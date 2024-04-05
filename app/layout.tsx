@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ReduxProvider } from "@/store/provider";
+import AuthProvider from "@/components/AuthProvider";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, Slide } from 'react-toastify';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +20,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ReduxProvider>
+          <AuthProvider>
+        {children}
+          </AuthProvider>
+          <ToastContainerWrapper/>
+        </ReduxProvider>
+        </body>
     </html>
   );
+}
+
+function ToastContainerWrapper() {
+	return (
+		<ToastContainer
+			position="top-center"
+			autoClose={2000}
+			hideProgressBar={false}
+			newestOnTop={false}
+			closeOnClick
+			rtl={false}
+			pauseOnFocusLoss
+			draggable
+			pauseOnHover
+			transition={Slide}
+			theme="colored"
+		/>
+	);
 }
