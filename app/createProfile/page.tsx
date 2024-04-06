@@ -28,7 +28,7 @@ function CreateProfile() {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:5173/auth/createProfile",
+        `${process.env.SERVER_SIDE}/auth/createProfile`,
         {
           name: profileData?.name,
           age: Number(profileData?.age),

@@ -6,7 +6,7 @@ export const login = createAsyncThunk(
   async ({ email, password }: any) => {
     try {
       await axios.post(
-        "http://localhost:5173/auth/login",
+        `${process.env.SERVER_SIDE}/auth/login`,
         {
           email,
           password,

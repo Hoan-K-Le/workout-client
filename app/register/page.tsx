@@ -11,7 +11,7 @@ export default function RegisterUser() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:5173/auth/signup";
+      const url = `${process.env.SERVER_SIDE}/auth/signup`;
       const { data } = await axios({
         method: "POST",
         url,

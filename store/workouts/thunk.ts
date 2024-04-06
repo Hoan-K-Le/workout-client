@@ -11,7 +11,7 @@ export const createNewWorkout = createAsyncThunk(
   async ({ name, load, rep, userId }: CreateWorkoutPayload, { dispatch }) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:5173/workout/addWorkout",
+        `${process.env.SERVER_SIDE}/workout/addWorkout`,
         {
           name: name,
           weight: load,
@@ -34,7 +34,7 @@ export const getAllWorkout = createAsyncThunk(
   async (userId: string, { dispatch }) => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5173/workout/getWorkouts",
+        `${process.env.SERVER_SIDE}/workout/getWorkouts`,
         {
           withCredentials: true,
           params: {
@@ -55,7 +55,7 @@ export const deleteWorkout = createAsyncThunk(
   async ({ id, userId }: { id: string; userId: string }, { dispatch }) => {
     try {
       const { data } = await axios.delete(
-        "http://localhost:5173/workout/deleteworkout",
+        `${process.env.SERVER_SIDE}/workout/deleteworkout`,
         {
           data: {
             workoutId: id,

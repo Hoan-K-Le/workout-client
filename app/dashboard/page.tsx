@@ -23,7 +23,7 @@ function Dashboard() {
   const router = useRouter();
   const handleLogOut = async () => {
     try {
-      await axios.get("http://localhost:5173/auth/logout", {
+      await axios.get(`${process.env.SERVER_SIDE}/auth/logout`, {
         withCredentials: true,
       });
 

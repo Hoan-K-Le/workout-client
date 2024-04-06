@@ -4,9 +4,12 @@ import { setUser } from "@/store/user";
 
 const checkProfile = async (dispatch: any, router: any) => {
   try {
-    const { data } = await axios.get(`http://localhost:5173/auth/verifyUser`, {
-      withCredentials: true,
-    });
+    const { data } = await axios.get(
+      `${process.env.SERVER_SIDE}/auth/verifyUser`,
+      {
+        withCredentials: true,
+      }
+    );
 
     if (!data.user) {
       router.push("/login");
