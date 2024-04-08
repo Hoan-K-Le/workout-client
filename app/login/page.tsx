@@ -7,13 +7,14 @@ import { toast } from "react-toastify";
 import { login } from "@/store/user/thunk";
 import { AppDispatch } from "@/store";
 import checkProfile from "@/components/utils/authUtils";
+import Inner from "@/components/Inner";
 
 export default function Login() {
   const [inputVal, setInputVal] = useState({ email: "", password: "" });
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent): Promise<any> => {
     e.preventDefault();
     try {
       const data = await dispatch(
@@ -33,39 +34,44 @@ export default function Login() {
     setInputVal(prev => ({ ...prev, [name]: value }));
   };
   return (
-    <div className="flex justify-center items-center min-h-[100vh]">
-      <form
-        className="flex flex-col rounded-xl  border shadow-md p-4 gap-4 w-[400px]"
-        onSubmit={handleSubmit}
-      >
-        <p className="text-center text-3xl">Sign In</p>
-        <input
-          type="text"
-          name="email"
-          placeholder="Email..."
-          className="border px-4 py-2 rounded-xl"
-          onChange={handleOnChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password..."
-          className="border px-4 py-2 rounded-xl"
-          onChange={handleOnChange}
-        />
-        <Link href="#" className="text-warning">
-          Forgot password?
-        </Link>
-        <button type="submit" className="bg-info text-white py-1.5 rounded-lg">
-          Log in
-        </button>
-        <span className="text-center">
-          Already have an account?{" "}
-          <Link href={"/register"} className="text-warning">
-            Signup
+    <Inner>
+      <div className="flex justify-center items-center min-h-[100vh]">
+        <form
+          className="flex flex-col rounded-xl  border shadow-md p-4 gap-4 w-[400px]"
+          onSubmit={handleSubmit}
+        >
+          <p className="text-center text-3xl">Sign In</p>
+          <input
+            type="text"
+            name="email"
+            placeholder="Email..."
+            className="border px-4 py-2 rounded-xl"
+            onChange={handleOnChange}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password..."
+            className="border px-4 py-2 rounded-xl"
+            onChange={handleOnChange}
+          />
+          <Link href="#" className="text-warning">
+            Forgot password?
           </Link>
-        </span>
-      </form>
-    </div>
+          <button
+            type="submit"
+            className="bg-info text-white py-1.5 rounded-lg"
+          >
+            Log in
+          </button>
+          <span className="text-center">
+            Already have an account?{" "}
+            <Link href={"/register"} className="text-warning">
+              Signup
+            </Link>
+          </span>
+        </form>
+      </div>
+    </Inner>
   );
 }

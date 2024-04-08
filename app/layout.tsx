@@ -5,6 +5,7 @@ import { ReduxProvider } from "@/store/provider";
 import AuthProvider from "@/components/AuthProvider";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, Slide } from 'react-toastify';
+import Transition from "@/components/Transition";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <ReduxProvider>
           <AuthProvider>
+            <Transition>
         {children}
+            </Transition>
           </AuthProvider>
           <ToastContainerWrapper/>
         </ReduxProvider>

@@ -18,12 +18,11 @@ const styles = {
 
 function Dashboard() {
   const user = useAppSelector(state => state.userSettings.user);
-  console.log(user, "userdashboard 21");
   const dispatch = useDispatch();
   const router = useRouter();
   const handleLogOut = async () => {
     try {
-      await axios.get(`${process.env.SERVER_SIDE}/auth/logout`, {
+      await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/auth/logout`, {
         withCredentials: true,
       });
 
